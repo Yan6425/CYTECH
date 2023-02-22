@@ -72,7 +72,8 @@ void choixSymbole(Joueur tblJoueur[2], int nJoueur){
     char symboles[2] = {'X', 'O'};
 
     do{
-        printf("%s veux-tu jouer les X ou les O ?", tblJoueur[nJoueur].prenom);
+        fflush(stdin);
+        printf("%s veux-tu jouer les X ou les O ? ", tblJoueur[nJoueur].prenom);
         scanf("%c", &choix);
     } while(choix != 'X' && choix != 'O');
     tblJoueur[nJoueur].symbole = choix;
@@ -82,7 +83,7 @@ void choixSymbole(Joueur tblJoueur[2], int nJoueur){
 
 void afficherGrille(char grille[3][3]){
     for (int i = 0; i < 3; i++){
-        printf("%d", i);
+        printf("%d", i + 1);
         for (int j = 0; j < 3; j++){
             printf("|%c", grille[i][j]);
         }
@@ -96,23 +97,21 @@ void jouer(Joueur joueur,char grille[3][3]){
     int choixX;
     int choixY;
     do{
-        printf("%s saisie la case sur laquelle tu veux jouer : ", joueur.prenom);
+        fflush(stdin);
+        printf("%s saisie les coordonnées de la case sur laquelle tu veux jouer :\n", joueur.prenom);
         scanf("%d", &choixX);
         scanf("%d", &choixY);
     } while (choixX < 1 || 3 < choixX || choixY < 1 || 3 < choixY);
     grille[choixX - 1][choixY - 1] = joueur.symbole;
+    printf("essaie 1");
 }
 
 
 int lignes(char symbole, char grille[3][3]){
     int res;
     for (int i = 0; i < 3; i++){
-        res = 1;
         for (int j = 0; j < 3; j++){
-            res *= grille[i][j] == symbole;
-        }
-        if (res){
-            break;
+            res = grille[i][j] == symbole;
         }
     }
     return res;
@@ -122,12 +121,8 @@ int lignes(char symbole, char grille[3][3]){
 int colonnes(char symbole, char grille[3][3]){
     int res;
     for (int i = 0; i < 3; i++){
-        res = 1;
         for (int j = 0; j < 3; j++){
-            res *= grille[j][i] == symbole;
-        }
-        if (res){
-            break;
+            res = grille[j][i] == symbole;
         }
     }
     return res;
@@ -137,12 +132,8 @@ int colonnes(char symbole, char grille[3][3]){
 int diags(char symbole, char grille[3][3]){
     int res;
     for (int i = 0; i < 2; i++){
-        res = 1;
         for (int j = 3 * i; j < 3 * !i; j = j - 1 + 2 * i){
-            res *= grille[j][j] == symbole;
-        }
-        if (res){
-            break;
+            res = grille[j][j] == symbole;
         }
     }
     return res;
@@ -171,8 +162,7 @@ int main(){
     Joueur gagnant;
     char grille[3][3] = {"   ", "   ", "   "};
     srand(time(NULL));
-
-    nJoueur = quiChoisi(tblJoueur[0], tblJoueur[1]);
+    int nJoueur = quiChoisi(tblJoueur[0], tblJoueur[1]);
     choixSymbole(tblJoueur, nJoueur);
     nJoueur = tblJoueur[0].symbole == 'O';
 
