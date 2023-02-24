@@ -1,4 +1,6 @@
 #include "fonctions.h"
+#define HAUTEUR = 6
+#define LARGEUR = 7
 
 int main(){
     char** grille = creerGrille(HAUTEUR, LARGEUR);
