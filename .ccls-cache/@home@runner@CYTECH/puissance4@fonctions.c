@@ -13,6 +13,7 @@ char** creerGrille(int hauteur, int largeur){
   
   return grille;
 }
+=====
 
 
 typedef struct Joueur {
