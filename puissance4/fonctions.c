@@ -1,12 +1,12 @@
 #include "fonctions.h"
 
 
-char** creerGrille(int hauteur, int largeur){
-    char** grille = malloc(hauteur * sizeof(char*));
+char** creerGrille(){
+    char** grille = malloc(HAUTEUR * sizeof(char*));
     
-    for (int i = 0; i < hauteur; i++){
-        grille[i] = malloc(largeur * sizeof(char));
-        for (int j = 0; j < largeur; j++){
+    for (int i = 0; i < HAUTEUR; i++){
+        grille[i] = malloc(LARGEUR * sizeof(char));
+        for (int j = 0; j < LARGEUR; j++){
             grille[i][j] = ' ';
         }  
     }

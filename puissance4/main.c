@@ -1,7 +1,7 @@
 #include "fonctions.h"
 
 int main(){
-    char** grille = creerGrille(HAUTEUR, LARGEUR);
+    char** grille = creerGrille();
     Joueur* tblJoueur = creerTblJoueurs();
     Joueur gagnant;
     int nJoueur = quiCommence();
